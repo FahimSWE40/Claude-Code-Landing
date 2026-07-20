@@ -39,8 +39,9 @@
                 <a href="#troubleshoot" class="nav-link">5. Debug</a>
             </nav>
             <div class="header-actions">
-                <a href="https://agentrouter.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                    <span>AgentRouter Dashboard</span>
+                <a href="https://agentrouter.org/register?aff=9gge" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-outline">
+                    <span>Claude Code $100</span>
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -399,10 +400,10 @@
                         <div class="terminal-mockup">
                             <div class="terminal-header">
                                 <div class="terminal-buttons"><span></span><span></span><span></span></div>
-                                <span class="terminal-title">zsh</span>
+                                <span class="terminal-title">bash</span>
                             </div>
                             <div class="terminal-body">
-                                <div class="terminal-line comment"># Add to ~/.zshrc or ~/.bashrc:</div>
+                                <div class="terminal-line comment"># Add to ~/.bashrc or ~/.zshrc:</div>
                                 <div class="terminal-line code-snippet">
                                     export ANTHROPIC_BASE_URL="https://agentrouter.org/"
                                 </div>
@@ -417,8 +418,8 @@
                                 <div class="terminal-separator"></div>
 
                                 <div class="terminal-line command-line">
-                                    <span class="prompt">$</span> source ~/.zshrc
-                                    <button class="copy-btn" data-copy="source ~/.zshrc" aria-label="Copy command">
+                                    <span class="prompt">$</span> source ~/.bashrc
+                                    <button class="copy-btn" data-copy="source ~/.bashrc" aria-label="Copy command">
                                         <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
                                             stroke="currentColor" stroke-width="2">
                                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -426,7 +427,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="terminal-line comment"># (Or source ~/.bashrc depending on shell)</div>
+                                <div class="terminal-line comment"># (Or source ~/.zshrc depending on shell)</div>
                             </div>
                         </div>
                         <div class="unix-append-helper">
@@ -437,14 +438,14 @@
                                 <div class="terminal-body">
                                     <div class="terminal-line command-line">
                                         <span class="prompt">$</span> <span class="cmd-text">echo 'export
-                                            ANTHROPIC_BASE_URL="https://agentrouter.org/"' >> ~/.zshrc && echo 'export
+                                            ANTHROPIC_BASE_URL="https://agentrouter.org/"' >> ~/.bashrc && echo 'export
                                             ANTHROPIC_AUTH_TOKEN="<span
-                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.zshrc &&
+                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.bashrc &&
                                             echo 'export ANTHROPIC_API_KEY="<span
-                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.zshrc &&
-                                            source ~/.zshrc</span>
+                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.bashrc &&
+                                            source ~/.bashrc</span>
                                         <button class="copy-btn"
-                                            data-copy-template='echo "export ANTHROPIC_BASE_URL=\"https://agentrouter.org/\"" >> ~/.zshrc && echo "export ANTHROPIC_AUTH_TOKEN=\"{key}\"" >> ~/.zshrc && echo "export ANTHROPIC_API_KEY=\"{key}\"" >> ~/.zshrc && source ~/.zshrc'
+                                            data-copy-template='echo "export ANTHROPIC_BASE_URL=\"https://agentrouter.org/\"" >> ~/.bashrc && echo "export ANTHROPIC_AUTH_TOKEN=\"{key}\"" >> ~/.bashrc && echo "export ANTHROPIC_API_KEY=\"{key}\"" >> ~/.bashrc && source ~/.bashrc'
                                             aria-label="Copy combined command">
                                             <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
                                                 fill="none" stroke="currentColor" stroke-width="2">
@@ -547,7 +548,10 @@
                         <div class="model-card tier-1 active" data-model="claude-opus-4-8">
                             <div class="card-tier-tag">🥇 Best Coding</div>
                             <span class="card-check" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
                             </span>
                             <div class="model-card-header">
                                 <h4>claude-opus-4-8</h4>
@@ -558,11 +562,13 @@
                             <div class="model-metrics">
                                 <div class="metric">
                                     <span class="metric-label">Capability</span>
-                                    <span class="meter" data-level="5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter" data-level="5"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost</span>
-                                    <span class="meter meter-cost" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter meter-cost" data-level="4"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                             </div>
                         </div>
@@ -570,7 +576,10 @@
                         <div class="model-card tier-2" data-model="claude-opus-4-7">
                             <div class="card-tier-tag">🥈 Daily Coding</div>
                             <span class="card-check" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
                             </span>
                             <div class="model-card-header">
                                 <h4>claude-opus-4-7</h4>
@@ -581,11 +590,13 @@
                             <div class="model-metrics">
                                 <div class="metric">
                                     <span class="metric-label">Capability</span>
-                                    <span class="meter" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter" data-level="4"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost</span>
-                                    <span class="meter meter-cost" data-level="3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter meter-cost" data-level="3"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                             </div>
                         </div>
@@ -593,7 +604,10 @@
                         <div class="model-card tier-3" data-model="glm-5.2">
                             <div class="card-tier-tag">🥉 Fast + Cheap</div>
                             <span class="card-check" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
                             </span>
                             <div class="model-card-header">
                                 <h4>glm-5.2</h4>
@@ -604,11 +618,13 @@
                             <div class="model-metrics">
                                 <div class="metric">
                                     <span class="metric-label">Capability</span>
-                                    <span class="meter" data-level="3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter" data-level="3"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost</span>
-                                    <span class="meter meter-cost" data-level="1" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter meter-cost" data-level="1"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                             </div>
                         </div>
@@ -616,7 +632,10 @@
                         <div class="model-card tier-gpt" data-model="gpt-5.5">
                             <div class="card-tier-tag">🤖 Reasoning Choice</div>
                             <span class="card-check" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
                             </span>
                             <div class="model-card-header">
                                 <h4>gpt-5.5</h4>
@@ -627,11 +646,13 @@
                             <div class="model-metrics">
                                 <div class="metric">
                                     <span class="metric-label">Capability</span>
-                                    <span class="meter" data-level="5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter" data-level="5"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-label">Cost</span>
-                                    <span class="meter meter-cost" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                    <span class="meter meter-cost" data-level="4"
+                                        aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
                                 </div>
                             </div>
                         </div>
@@ -646,8 +667,13 @@
                                 <span class="summary-tier" id="summary-tier">🥇 Best Coding</span>
                             </div>
                         </div>
-                        <button class="summary-copy" data-copy-template="{model}" aria-label="Copy model ID to clipboard">
-                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <button class="summary-copy" data-copy-template="{model}"
+                            aria-label="Copy model ID to clipboard">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
                             <span>Copy ID</span>
                         </button>
                     </div>
@@ -906,12 +932,7 @@
                 <p class="footer-copy">© 2026 AgentRouter Integration Guide. Provided for agentrouter.org integration
                     support.</p>
             </div>
-            <div class="footer-right">
-                <a href="https://agentrouter.org" target="_blank" rel="noopener noreferrer"
-                    class="footer-link">AgentRouter Home</a>
-                <a href="https://github.com/anthropic-ai/claude-code" target="_blank" rel="noopener noreferrer"
-                    class="footer-link">Claude Code GitHub</a>
-            </div>
+
         </div>
     </footer>
 
