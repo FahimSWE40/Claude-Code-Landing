@@ -1985,3 +1985,28 @@ input:focus-visible,
         display: none;
     }
 }
+
+/* -------------------------------------------------------------
+   RESPONSIVE OVERRIDES (placed last so they win the cascade)
+------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    .header-actions .btn-outline {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Let the headline wrap naturally instead of clipping on the forced break */
+    .hero-title br {
+        display: none;
+    }
+    .hero-title {
+        overflow-wrap: break-word;
+    }
+    .routing-diagram {
+        margin-top: 2rem;
+    }
+}
