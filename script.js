@@ -259,6 +259,17 @@ function initTabs() {
 function initModelPicker() {
     const modelCards = document.querySelectorAll('.model-card');
     const selectedModelTexts = document.querySelectorAll('.selected-model-text');
+    const summaryTier = document.getElementById('summary-tier');
+
+    // Sync the live summary badge with the chosen card's tier tag
+    function updateSummary(card) {
+        if (!summaryTier) return;
+        const tag = card.querySelector('.card-tier-tag');
+        if (tag) summaryTier.textContent = tag.textContent.trim();
+        // Recolor the summary to match the card's tier theme
+        const tier = Array.from(card.classList).find(c => c.startsWith('tier-'));
+        summaryTier.dataset.tier = tier || '';
+    }
 
     modelCards.forEach(card => {
         // Make each card a proper keyboard-operable control
@@ -283,6 +294,7 @@ function initModelPicker() {
             // Activate current card
             card.classList.add('active');
             card.setAttribute('aria-pressed', 'true');
+            updateSummary(card);
 
             const modelName = card.getAttribute('data-model');
             
@@ -300,6 +312,10 @@ function initModelPicker() {
             });
         });
     });
+
+    // Initialize summary from whichever card starts active
+    const initialCard = document.querySelector('.model-card.active') || modelCards[0];
+    if (initialCard) updateSummary(initialCard);
 }
 
 /* =========================================================================
@@ -342,7 +358,7 @@ function initDiagnostics() {
    6. CLIPBOARD COPY UTILITIES & TOASTS
    ========================================================================= */
 function initClipboard() {
-    const copyButtons = document.querySelectorAll('.copy-btn');
+    const copyButtons = document.querySelectorAll('.copy-btn, .summary-copy');
     const toast = document.getElementById('copy-toast');
     let toastTimeout;
 

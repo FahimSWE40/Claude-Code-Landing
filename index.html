@@ -546,59 +546,110 @@
                     <div class="model-cards-grid">
                         <div class="model-card tier-1 active" data-model="claude-opus-4-8">
                             <div class="card-tier-tag">🥇 Best Coding</div>
+                            <span class="card-check" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                            </span>
                             <div class="model-card-header">
                                 <h4>claude-opus-4-8</h4>
                                 <span class="model-meta">Ultimate Quality</span>
                             </div>
                             <p class="model-desc">Use for complex logic, large codebases, architecture reviews, and
                                 debugging tricky bugs.</p>
-                            <div class="model-specs">
-                                <span>Capability: High</span>
-                                <span>Cost: Premium</span>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Capability</span>
+                                    <span class="meter" data-level="5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Cost</span>
+                                    <span class="meter meter-cost" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="model-card tier-2" data-model="claude-opus-4-7">
                             <div class="card-tier-tag">🥈 Daily Coding</div>
+                            <span class="card-check" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                            </span>
                             <div class="model-card-header">
                                 <h4>claude-opus-4-7</h4>
                                 <span class="model-meta">Best Balance</span>
                             </div>
                             <p class="model-desc">Excellent for feature development, refactoring, code reviews, and
                                 writing tests.</p>
-                            <div class="model-specs">
-                                <span>Capability: High-Mid</span>
-                                <span>Cost: Standard</span>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Capability</span>
+                                    <span class="meter" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Cost</span>
+                                    <span class="meter meter-cost" data-level="3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="model-card tier-3" data-model="glm-5.2">
                             <div class="card-tier-tag">🥉 Fast + Cheap</div>
+                            <span class="card-check" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                            </span>
                             <div class="model-card-header">
                                 <h4>glm-5.2</h4>
                                 <span class="model-meta">Cost Efficient</span>
                             </div>
                             <p class="model-desc">Optimized for quick queries, writing comments, documentation
                                 generation, and small scripts.</p>
-                            <div class="model-specs">
-                                <span>Capability: Mid</span>
-                                <span>Cost: Low</span>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Capability</span>
+                                    <span class="meter" data-level="3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Cost</span>
+                                    <span class="meter meter-cost" data-level="1" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="model-card tier-gpt" data-model="gpt-5.5">
                             <div class="card-tier-tag">🤖 Reasoning Choice</div>
+                            <span class="card-check" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                            </span>
                             <div class="model-card-header">
                                 <h4>gpt-5.5</h4>
                                 <span class="model-meta">Planning King</span>
                             </div>
                             <p class="model-desc">Excellent for systems reasoning, planning workflows, and multi-file
                                 code architectures.</p>
-                            <div class="model-specs">
-                                <span>Capability: Exceptional</span>
-                                <span>Cost: Premium</span>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Capability</span>
+                                    <span class="meter" data-level="5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Cost</span>
+                                    <span class="meter meter-cost" data-level="4" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Live summary of the current selection -->
+                    <div class="model-summary" id="model-summary">
+                        <div class="summary-info">
+                            <span class="summary-eyebrow">❯ selected default</span>
+                            <div class="summary-name-row">
+                                <code class="summary-model selected-model-text">claude-opus-4-8</code>
+                                <span class="summary-tier" id="summary-tier">🥇 Best Coding</span>
+                            </div>
+                        </div>
+                        <button class="summary-copy" data-copy-template="{model}" aria-label="Copy model ID to clipboard">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <span>Copy ID</span>
+                        </button>
                     </div>
 
                     <!-- Config Generator tabs based on selected model -->
