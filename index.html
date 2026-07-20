@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentRouter + Claude Code Setup Guide</title>
+    <meta name="description"
+        content="Step-by-step interactive setup guide to configure Anthropic's Claude Code CLI with AgentRouter.org. Route your terminal AI to Claude Opus, Sonnet, GPT-5.5, and more.">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Canvas for Interactive Network Nodes -->
+    <canvas id="network-canvas"></canvas>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span class="logo-text">AgentRouter<span class="logo-accent">.link</span></span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#install" class="nav-link">1. Install</a>
+                <a href="#apikey" class="nav-link">2. API Key</a>
+                <a href="#config" class="nav-link">3. Configure</a>
+                <a href="#models" class="nav-link">4. Models</a>
+                <a href="#troubleshoot" class="nav-link">5. Debug</a>
+            </nav>
+            <div class="header-actions">
+                <a href="https://agentrouter.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                    <span>AgentRouter Dashboard</span>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                    aria-controls="mobile-nav">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation Drawer -->
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+            <a href="#install" class="mobile-nav-link"><span class="mobile-nav-num">01</span> Install</a>
+            <a href="#apikey" class="mobile-nav-link"><span class="mobile-nav-num">02</span> API Key</a>
+            <a href="#config" class="mobile-nav-link"><span class="mobile-nav-num">03</span> Configure</a>
+            <a href="#models" class="mobile-nav-link"><span class="mobile-nav-num">04</span> Models</a>
+            <a href="#troubleshoot" class="mobile-nav-link"><span class="mobile-nav-num">05</span> Debug</a>
+            <a href="https://agentrouter.org/register?aff=9gge" target="_blank" rel="noopener noreferrer"
+                class="mobile-nav-link mobile-nav-cta">Claude Code $100</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-glow"></div>
+            <div class="hero-container">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Claude Code CLI Integration Guide</span>
+                </div>
+                <h1 class="hero-title">
+                    Supercharge Claude Code <br>
+                    <span class="text-gradient">With AgentRouter</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Route your Anthropic Claude Code command-line developer agent through AgentRouter's high-speed API
+                    gateway. Unlock Claude Opus 4.8, Sonnet 4.7, GPT-5.5, and more.
+                </p>
+
+                <!-- Signature: Live Routing Diagram -->
+                <div class="routing-diagram" aria-hidden="true">
+                    <div class="routing-node node-client">
+                        <div class="node-glyph">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                        </div>
+                        <div class="node-label">Claude Code</div>
+                        <div class="node-sub">your terminal</div>
+                    </div>
+                    <div class="routing-wire">
+                        <div class="wire-track"></div>
+                        <div class="wire-packet"></div>
+                        <div class="wire-packet packet-2"></div>
+                        <span class="wire-tag">ANTHROPIC_BASE_URL</span>
+                    </div>
+                    <div class="routing-node node-gateway">
+                        <div class="node-glyph">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <div class="node-label">AgentRouter</div>
+                        <div class="node-sub">gateway</div>
+                    </div>
+                    <div class="routing-wire">
+                        <div class="wire-track"></div>
+                        <div class="wire-packet"></div>
+                        <div class="wire-packet packet-2"></div>
+                        <span class="wire-tag">model routing</span>
+                    </div>
+                    <div class="routing-node node-models">
+                        <div class="node-stack">
+                            <span>Opus 4.8</span>
+                            <span>GPT-5.5</span>
+                            <span>GLM-5.2</span>
+                        </div>
+                        <div class="node-label">Any model</div>
+                        <div class="node-sub">one endpoint</div>
+                    </div>
+                </div>
+
+                <!-- Interactive API Key Injector (WOW factor) -->
+                <div class="key-injector-card">
+                    <div class="key-injector-header">
+                        <div class="key-title-group">
+                            <span class="key-icon">🔑</span>
+                            <span class="key-label">Personalize This Guide</span>
+                        </div>
+                        <span class="key-badge">Interactive</span>
+                    </div>
+                    <div class="key-injector-body">
+                        <p class="key-desc">Enter your AgentRouter API key below. It will automatically populate into
+                            all the configuration commands on this page for easy copy-pasting!</p>
+                        <div class="input-wrapper">
+                            <input type="text" id="api-key-input" placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                                autocomplete="off" spellcheck="false">
+                            <button id="api-key-clear" class="btn-clear" aria-label="Clear API key">×</button>
+                        </div>
+                        <div class="key-visualizer">
+                            <span class="visualizer-label">Current Configuration Key:</span>
+                            <code id="key-display">sk-your-agentrouter-key</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#install" class="btn btn-primary">Start Step-by-Step Setup</a>
+                    <a href="#models" class="btn btn-secondary">Explore Recommended Models</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracker / Floating Table of Contents -->
+        <div class="progress-bar-container">
+            <div class="progress-steps">
+                <a href="#install" class="progress-step active" data-step="1">
+                    <div class="step-num">01</div>
+                    <div class="step-title">Installation</div>
+                </a>
+                <a href="#apikey" class="progress-step" data-step="2">
+                    <div class="step-num">02</div>
+                    <div class="step-title">Get Key</div>
+                </a>
+                <a href="#config" class="progress-step" data-step="3">
+                    <div class="step-num">03</div>
+                    <div class="step-title">Configure OS</div>
+                </a>
+                <a href="#run" class="progress-step" data-step="4">
+                    <div class="step-num">04</div>
+                    <div class="step-title">Run CLI</div>
+                </a>
+                <a href="#models" class="progress-step" data-step="5">
+                    <div class="step-num">05</div>
+                    <div class="step-title">Model Selector</div>
+                </a>
+                <a href="#troubleshoot" class="progress-step" data-step="6">
+                    <div class="step-num">06</div>
+                    <div class="step-title">Troubleshoot</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <!-- STEP 1: INSTALL -->
+            <section id="install" class="guide-section">
+                <div class="section-badge">Step 01</div>
+                <h2 class="section-title">Install Claude Code Globally</h2>
+                <p class="section-desc">Claude Code is Anthropic's official agentic developer CLI. Install it globally
+                    on your machine using npm. Ensure you have Node.js installed.</p>
+
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="t-btn close"></span>
+                            <span class="t-btn minimize"></span>
+                            <span class="t-btn expand"></span>
+                        </div>
+                        <span class="terminal-title">bash</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line command-line">
+                            <span class="prompt">$</span> npm install -g @anthropic-ai/claude-code
+                            <button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code"
+                                aria-label="Copy command">
+                                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="terminal-line output-line comment"># Fetching packages from npm registry...</div>
+                        <div class="terminal-line output-line success">+ @anthropic-ai/claude-code@latest installed
+                            successfully</div>
+                    </div>
+                </div>
+
+                <div class="card check-card">
+                    <div class="card-header">
+                        <span class="check-icon">✓</span>
+                        <h3>Verify the Installation</h3>
+                    </div>
+                    <p class="card-body">Verify that the Claude CLI is successfully installed on your path by running
+                        the version command:</p>
+                    <div class="terminal-mockup compact">
+                        <div class="terminal-body">
+                            <div class="terminal-line command-line">
+                                <span class="prompt">$</span> claude --version
+                                <button class="copy-btn" data-copy="claude --version" aria-label="Copy command">
+                                    <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="terminal-line output-line">claude/0.2.x-beta (node/v20.11.0)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 2: GET API KEY -->
+            <section id="apikey" class="guide-section">
+                <div class="section-badge">Step 02</div>
+                <h2 class="section-title">Get Your AgentRouter API Key</h2>
+                <p class="section-desc">AgentRouter acts as an API gateway. Instead of standard Anthropic keys, you will
+                    need a key generated on the AgentRouter dashboard.</p>
+
+                <div class="dashboard-mockup">
+                    <div class="dashboard-header">
+                        <div class="db-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="db-title">agentrouter.org/dashboard</span>
+                    </div>
+                    <div class="dashboard-body">
+                        <div class="db-sidebar">
+                            <div class="db-nav-item active">🔑 API Keys</div>
+                            <div class="db-nav-item">📊 Usage Logs</div>
+                            <div class="db-nav-item">💳 Billing</div>
+                        </div>
+                        <div class="db-content">
+                            <div class="db-card">
+                                <h4>API Keys Overview</h4>
+                                <p>Use keys below to authorize Claude Code CLI connections.</p>
+                                <div class="mock-key-row">
+                                    <div class="mock-key-info">
+                                        <span class="key-name">Claude CLI Key</span>
+                                        <code class="key-hash">sk-ar-7f8a...3b2d</code>
+                                    </div>
+                                    <span class="key-status-badge">Active</span>
+                                </div>
+                                <button id="interactive-key-generator" class="btn btn-primary btn-sm">Generate Sample
+                                    Key</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <strong>API Key Format:</strong> AgentRouter keys usually look like
+                        <code>sk-xxxxxxxxxxxxxxxx</code>. Copying this key and inserting it into our personalization
+                        input above will update all setup steps on this page!
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 3: CONFIGURE ENVIRONMENT -->
+            <section id="config" class="guide-section">
+                <div class="section-badge">Step 03</div>
+                <h2 class="section-title">Configure Environment Variables</h2>
+                <p class="section-desc">To redirect Claude Code's traffic to AgentRouter, you need to set up three key
+                    environment variables. Select your operating system below to see the commands.</p>
+
+                <!-- OS Tab Switcher -->
+                <div class="tabs-container">
+                    <div class="tab-headers" role="tablist">
+                        <button class="tab-button active" role="tab" aria-selected="true" data-tab="windows">
+                            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <path
+                                    d="M0 3.449L9.75 2.1v9.45H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.1zM10.8 1.95L24 0v11.55H10.8V1.95zM10.8 12.45H24v11.55l-13.2-1.95v-9.6z" />
+                            </svg>
+                            Windows (PowerShell)
+                        </button>
+                        <button class="tab-button" role="tab" aria-selected="false" data-tab="unix">
+                            <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                            macOS / Linux
+                        </button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-windows">
+                        <div class="tab-explanation">
+                            <p>Run these <code>setx</code> commands in PowerShell to apply variables system-wide.
+                                <strong>After running, you must restart your terminal window</strong> for the changes to
+                                load.
+                            </p>
+                        </div>
+                        <div class="terminal-mockup">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons"><span></span><span></span><span></span></div>
+                                <span class="terminal-title">PowerShell</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line command-line">
+                                    <span class="prompt">PS></span> setx ANTHROPIC_BASE_URL "https://agentrouter.org/"
+                                    <button class="copy-btn"
+                                        data-copy='setx ANTHROPIC_BASE_URL "https://agentrouter.org/"'
+                                        aria-label="Copy command">
+                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="terminal-line output-line success">SUCCESS: Specified value was saved.</div>
+
+                                <div class="terminal-line command-line">
+                                    <span class="prompt">PS></span> setx ANTHROPIC_AUTH_TOKEN "<span
+                                        class="template-key">sk-your-agentrouter-key</span>"
+                                    <button class="copy-btn" data-copy-template='setx ANTHROPIC_AUTH_TOKEN "{key}"'
+                                        aria-label="Copy command">
+                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="terminal-line output-line success">SUCCESS: Specified value was saved.</div>
+
+                                <div class="terminal-line command-line">
+                                    <span class="prompt">PS></span> setx ANTHROPIC_API_KEY "<span
+                                        class="template-key">sk-your-agentrouter-key</span>"
+                                    <button class="copy-btn" data-copy-template='setx ANTHROPIC_API_KEY "{key}"'
+                                        aria-label="Copy command">
+                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="terminal-line output-line success">SUCCESS: Specified value was saved.</div>
+                            </div>
+                        </div>
+                        <div class="note-box">
+                            <span class="note-icon">⚠️</span>
+                            <span><strong>Important:</strong> You must completely close and open a brand new PowerShell
+                                window after running these commands to ensure the new environment variables are
+                                loaded.</span>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-unix">
+                        <div class="tab-explanation">
+                            <p>Append these variables to your profile configuration file (typically
+                                <code>~/.bashrc</code>, <code>~/.zshrc</code>, or <code>~/.profile</code>) and reload.
+                            </p>
+                        </div>
+                        <div class="terminal-mockup">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons"><span></span><span></span><span></span></div>
+                                <span class="terminal-title">zsh</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line comment"># Add to ~/.zshrc or ~/.bashrc:</div>
+                                <div class="terminal-line code-snippet">
+                                    export ANTHROPIC_BASE_URL="https://agentrouter.org/"
+                                </div>
+                                <div class="terminal-line code-snippet">
+                                    export ANTHROPIC_AUTH_TOKEN="<span
+                                        class="template-key">sk-your-agentrouter-key</span>"
+                                </div>
+                                <div class="terminal-line code-snippet">
+                                    export ANTHROPIC_API_KEY="<span class="template-key">sk-your-agentrouter-key</span>"
+                                </div>
+
+                                <div class="terminal-separator"></div>
+
+                                <div class="terminal-line command-line">
+                                    <span class="prompt">$</span> source ~/.zshrc
+                                    <button class="copy-btn" data-copy="source ~/.zshrc" aria-label="Copy command">
+                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="terminal-line comment"># (Or source ~/.bashrc depending on shell)</div>
+                            </div>
+                        </div>
+                        <div class="unix-append-helper">
+                            <h4>One-Line Setup (Append & Reload)</h4>
+                            <p>Copy and run this command to append variables to your configuration and reload
+                                automatically:</p>
+                            <div class="terminal-mockup compact">
+                                <div class="terminal-body">
+                                    <div class="terminal-line command-line">
+                                        <span class="prompt">$</span> <span class="cmd-text">echo 'export
+                                            ANTHROPIC_BASE_URL="https://agentrouter.org/"' >> ~/.zshrc && echo 'export
+                                            ANTHROPIC_AUTH_TOKEN="<span
+                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.zshrc &&
+                                            echo 'export ANTHROPIC_API_KEY="<span
+                                                class="template-key">sk-your-agentrouter-key</span>"' >> ~/.zshrc &&
+                                            source ~/.zshrc</span>
+                                        <button class="copy-btn"
+                                            data-copy-template='echo "export ANTHROPIC_BASE_URL=\"https://agentrouter.org/\"" >> ~/.zshrc && echo "export ANTHROPIC_AUTH_TOKEN=\"{key}\"" >> ~/.zshrc && echo "export ANTHROPIC_API_KEY=\"{key}\"" >> ~/.zshrc && source ~/.zshrc'
+                                            aria-label="Copy combined command">
+                                            <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 4: RUN CLAUDE CODE -->
+            <section id="run" class="guide-section">
+                <div class="section-badge">Step 04</div>
+                <h2 class="section-title">Run Claude Code</h2>
+                <p class="section-desc">Navigate to your development project directory and start the CLI. Claude Code
+                    will automatically detect the configuration in your environment variables.</p>
+
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons"><span></span><span></span><span></span></div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line command-line">
+                            <span class="prompt">$</span> cd your-project
+                            <button class="copy-btn" data-copy="cd your-project" aria-label="Copy command">
+                                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="terminal-line command-line">
+                            <span class="prompt">$</span> claude
+                            <button class="copy-btn" data-copy="claude" aria-label="Copy command">
+                                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="terminal-line output-line comment"># Claude Code starts up...</div>
+                        <div class="terminal-line output-line success">🤖 Claude Code (v0.2.x-beta)</div>
+                        <div class="terminal-line output-line">Connected to AgentRouter API Gateway. Ready to program.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check Connection Sub-Card -->
+                <div class="card verify-connection-card">
+                    <div class="card-header">
+                        <span class="check-icon status-pulse">●</span>
+                        <h3>Verify the Connection</h3>
+                    </div>
+                    <p class="card-body">Once inside the Claude session, run the status query to check that API
+                        endpoints point to <strong>AgentRouter</strong>:</p>
+                    <div class="terminal-mockup compact">
+                        <div class="terminal-body">
+                            <div class="terminal-line command-line">
+                                <span class="prompt">claude ❯</span> /status
+                                <button class="copy-btn" data-copy="/status" aria-label="Copy command">
+                                    <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="terminal-line output-line">API Base URL: <strong
+                                    class="text-glow">https://agentrouter.org/</strong></div>
+                            <div class="terminal-line output-line">Auth Token: <strong class="text-glow">sk-ar-...
+                                    (verified)</strong></div>
+                            <div class="terminal-line output-line success">✓ Connection secure and verified.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 5: MODEL SELECTION -->
+            <section id="models" class="guide-section">
+                <div class="section-badge">Step 05</div>
+                <h2 class="section-title">Model Selection & Management</h2>
+                <p class="section-desc">You are not restricted to a single model. AgentRouter allows you to switch
+                    between model endpoints (e.g., Claude, GPT-5.5, GLM) based on price and performance.</p>
+
+                <!-- Model Picker Widget (Interactive) -->
+                <div class="model-picker-wrapper">
+                    <h3>Configure Your Default Model</h3>
+                    <p class="picker-instructions">Select a model below to generate customized setup scripts.</p>
+
+                    <div class="model-cards-grid">
+                        <div class="model-card tier-1 active" data-model="claude-opus-4-8">
+                            <div class="card-tier-tag">🥇 Best Coding</div>
+                            <div class="model-card-header">
+                                <h4>claude-opus-4-8</h4>
+                                <span class="model-meta">Ultimate Quality</span>
+                            </div>
+                            <p class="model-desc">Use for complex logic, large codebases, architecture reviews, and
+                                debugging tricky bugs.</p>
+                            <div class="model-specs">
+                                <span>Capability: High</span>
+                                <span>Cost: Premium</span>
+                            </div>
+                        </div>
+
+                        <div class="model-card tier-2" data-model="claude-opus-4-7">
+                            <div class="card-tier-tag">🥈 Daily Coding</div>
+                            <div class="model-card-header">
+                                <h4>claude-opus-4-7</h4>
+                                <span class="model-meta">Best Balance</span>
+                            </div>
+                            <p class="model-desc">Excellent for feature development, refactoring, code reviews, and
+                                writing tests.</p>
+                            <div class="model-specs">
+                                <span>Capability: High-Mid</span>
+                                <span>Cost: Standard</span>
+                            </div>
+                        </div>
+
+                        <div class="model-card tier-3" data-model="glm-5.2">
+                            <div class="card-tier-tag">🥉 Fast + Cheap</div>
+                            <div class="model-card-header">
+                                <h4>glm-5.2</h4>
+                                <span class="model-meta">Cost Efficient</span>
+                            </div>
+                            <p class="model-desc">Optimized for quick queries, writing comments, documentation
+                                generation, and small scripts.</p>
+                            <div class="model-specs">
+                                <span>Capability: Mid</span>
+                                <span>Cost: Low</span>
+                            </div>
+                        </div>
+
+                        <div class="model-card tier-gpt" data-model="gpt-5.5">
+                            <div class="card-tier-tag">🤖 Reasoning Choice</div>
+                            <div class="model-card-header">
+                                <h4>gpt-5.5</h4>
+                                <span class="model-meta">Planning King</span>
+                            </div>
+                            <p class="model-desc">Excellent for systems reasoning, planning workflows, and multi-file
+                                code architectures.</p>
+                            <div class="model-specs">
+                                <span>Capability: Exceptional</span>
+                                <span>Cost: Premium</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Config Generator tabs based on selected model -->
+                    <div class="selector-methods-container">
+                        <div class="methods-tab-headers" role="tablist">
+                            <button class="method-tab active" data-method="cli-menu">Method 1: CLI Menu</button>
+                            <button class="method-tab" data-method="cli-arg">Method 2: CLI Command</button>
+                            <button class="method-tab" data-method="env-var">Method 3: Global Default</button>
+                        </div>
+
+                        <div class="method-content active" id="method-cli-menu">
+                            <p>Inside the Claude CLI session, type <code>/model</code> to pull up the visual model
+                                selection menu, or specify the model directly with the command:</p>
+                            <div class="terminal-mockup compact">
+                                <div class="terminal-body">
+                                    <div class="terminal-line command-line">
+                                        <span class="prompt">claude ❯</span> /model <span
+                                            class="selected-model-text">claude-opus-4-8</span>
+                                        <button class="copy-btn" data-copy-template="/model {model}"
+                                            aria-label="Copy command">
+                                            <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="terminal-line output-line success">✓ Switched session model to: <span
+                                            class="selected-model-text">claude-opus-4-8</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="method-content" id="method-cli-arg">
+                            <p>Start your Claude Code CLI session directly with the model targeted via command line
+                                flag:</p>
+                            <div class="terminal-mockup compact">
+                                <div class="terminal-body">
+                                    <div class="terminal-line command-line">
+                                        <span class="prompt">$</span> claude --model <span
+                                            class="selected-model-text">claude-opus-4-8</span>
+                                        <button class="copy-btn" data-copy-template="claude --model {model}"
+                                            aria-label="Copy command">
+                                            <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="method-content" id="method-env-var">
+                            <p>Lock in your preferred model globally across all CLI sessions using environment
+                                variables:</p>
+
+                            <div class="env-os-grid">
+                                <div class="env-os-col">
+                                    <h5>Windows (PowerShell)</h5>
+                                    <div class="terminal-mockup compact">
+                                        <div class="terminal-body">
+                                            <div class="terminal-line command-line">
+                                                <span class="prompt">PS></span> setx ANTHROPIC_MODEL "<span
+                                                    class="selected-model-text">claude-opus-4-8</span>"
+                                                <button class="copy-btn"
+                                                    data-copy-template='setx ANTHROPIC_MODEL "{model}"'
+                                                    aria-label="Copy command">
+                                                    <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                        fill="none" stroke="currentColor" stroke-width="2">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="env-os-col">
+                                    <h5>macOS / Linux (Shell Config)</h5>
+                                    <div class="terminal-mockup compact">
+                                        <div class="terminal-body">
+                                            <div class="terminal-line command-line">
+                                                <span class="prompt">$</span> export ANTHROPIC_MODEL="<span
+                                                    class="selected-model-text">claude-opus-4-8</span>"
+                                                <button class="copy-btn"
+                                                    data-copy-template='export ANTHROPIC_MODEL="{model}"'
+                                                    aria-label="Copy command">
+                                                    <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                        fill="none" stroke="currentColor" stroke-width="2">
+                                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                        <path
+                                                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 6: TROUBLESHOOTING -->
+            <section id="troubleshoot" class="guide-section">
+                <div class="section-badge">Step 06</div>
+                <h2 class="section-title">Troubleshooting Connection Errors</h2>
+                <p class="section-desc">If things don't work right away, review these diagnostics to quickly identify
+                    and resolve auth issues.</p>
+
+                <!-- Interactive Diagnostic Simulator -->
+                <div class="diagnostics-box">
+                    <div class="diag-header">
+                        <span class="diag-title">🔌 Connection Diagnostics Helper</span>
+                        <span class="diag-status" id="diag-status-indicator">Select Issue</span>
+                    </div>
+                    <div class="diag-body">
+                        <div class="diag-scenarios">
+                            <button class="diag-btn active" data-issue="unauthorized">
+                                <span class="diag-error-code">401</span>
+                                <span class="diag-error-title">Unauthorized / Env Missing</span>
+                            </button>
+                            <button class="diag-btn" data-issue="cached-auth">
+                                <span class="diag-error-code">AUTH</span>
+                                <span class="diag-error-title">Old Anthropic Login Cached</span>
+                            </button>
+                        </div>
+                        <div class="diag-solution-panel">
+                            <div class="solution-content active" id="sol-unauthorized">
+                                <h4>Issue: 401 Unauthorized Error</h4>
+                                <p>This means your environment variable is either missing, loaded in a different
+                                    terminal thread, or configured with an incorrect key.</p>
+
+                                <h5>1. Verify Current Environment Key</h5>
+                                <p>Run the query command to print the auth token loaded in the session:</p>
+
+                                <div class="env-os-grid">
+                                    <div class="env-os-col">
+                                        <h6>Windows (PowerShell)</h6>
+                                        <div class="terminal-mockup compact">
+                                            <div class="terminal-body">
+                                                <div class="terminal-line command-line">
+                                                    <span class="prompt">PS></span> echo $env:ANTHROPIC_AUTH_TOKEN
+                                                    <button class="copy-btn" data-copy="echo $env:ANTHROPIC_AUTH_TOKEN"
+                                                        aria-label="Copy command">
+                                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16"
+                                                            height="16" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="env-os-col">
+                                        <h6>macOS / Linux</h6>
+                                        <div class="terminal-mockup compact">
+                                            <div class="terminal-body">
+                                                <div class="terminal-line command-line">
+                                                    <span class="prompt">$</span> echo $ANTHROPIC_AUTH_TOKEN
+                                                    <button class="copy-btn" data-copy="echo $ANTHROPIC_AUTH_TOKEN"
+                                                        aria-label="Copy command">
+                                                        <svg class="copy-icon" viewBox="0 0 24 24" width="16"
+                                                            height="16" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2">
+                                                            </rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="subtext-note">It must display your API key. If it prints blank, your
+                                    environment variable did not load correctly. Ensure you restarted your terminal.</p>
+                            </div>
+
+                            <div class="solution-content" id="sol-cached-auth">
+                                <h4>Issue: Conflicts with Saved Anthropic Login</h4>
+                                <p>If you previously logged into Anthropic's cloud natively through Claude Code, the
+                                    client might be trying to load cached cookies/tokens instead of reading environment
+                                    variables.</p>
+
+                                <h5>Solution: Log Out and Restart</h5>
+                                <p>Remove existing Anthropic sessions and restart Claude to force environment variable
+                                    loading:</p>
+
+                                <div class="terminal-mockup compact">
+                                    <div class="terminal-body">
+                                        <div class="terminal-line command-line">
+                                            <span class="prompt">$</span> claude logout
+                                            <button class="copy-btn" data-copy="claude logout"
+                                                aria-label="Copy command">
+                                                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="terminal-line output-line success">✓ Logged out successfully. Cached
+                                            sessions removed.</div>
+                                        <div class="terminal-line command-line">
+                                            <span class="prompt">$</span> claude
+                                            <button class="copy-btn" data-copy="claude" aria-label="Copy command">
+                                                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="logo-text">AgentRouter<span class="logo-accent">.link</span></span>
+                </div>
+                <p class="footer-copy">© 2026 AgentRouter Integration Guide. Provided for agentrouter.org integration
+                    support.</p>
+            </div>
+            <div class="footer-right">
+                <a href="https://agentrouter.org" target="_blank" rel="noopener noreferrer"
+                    class="footer-link">AgentRouter Home</a>
+                <a href="https://github.com/anthropic-ai/claude-code" target="_blank" rel="noopener noreferrer"
+                    class="footer-link">Claude Code GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copy Status Notification -->
+    <div id="copy-toast" class="copy-toast">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
